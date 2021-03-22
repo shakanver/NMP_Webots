@@ -15,6 +15,8 @@
 #include <webots/Accelerometer.hpp>
 #include <webots/Gyro.hpp>
 #include <limits>
+#include <tuple>
+
 // All the webots classes are defined in the "webots" namespace
 using namespace webots;
 
@@ -25,6 +27,32 @@ using namespace webots;
 // a controller program.
 // The arguments of the main function can be specified by the
 // "controllerArgs" field of the Robot node
+
+#define INPUT_SPEED 8.0
+#define SENSOR_ARRAY_LENGTHS 3
+
+//helper functions
+
+//takes in an array, returns the maximum value of the array and its corresponding index
+std::tuple<double, int> getmaxdiff(double values[])
+{
+  double max = values[0];
+  int maxindex = 0;
+
+  for (int i = 1; i < SENSOR_ARRAY_LENGTHS; i++)
+  {
+    if (abs(values[i]) >= abs(max))
+    {
+      max = values[i];
+      maxindex = i;
+    }
+  }
+  
+  std::cout <<  "maxdiff: " << max <<  std::endl;
+
+  return std::make_tuple(max, maxindex);
+}
+
 int main(int argc, char **argv) {
   // create the Robot instance.
   Robot *robot = new Robot();
@@ -53,32 +81,81 @@ int main(int argc, char **argv) {
 
   // Enable the sensors, feel free to change the sampling rate
   lidar->enable(50);
-  frontLeftDs->enable(100);
-  frontRightDs->enable(100);
-  leftDs->enable(100);
-  rightDs->enable(100);
-  leftFrontLeftDs->enable(100);
-  rightFrontRightDs->enable(100);
-  accelerometer->enable(100);
-  gyro->enable(100);
-  cam->enable(50);
+  frontLeftDs->enable(timeStep);
+  frontRightDs->enable(timeStep);
+  leftDs->enable(timeStep);
+  rightDs->enable(timeStep);
+  leftFrontLeftDs->enable(timeStep);
+  rightFrontRightDs->enable(timeStep);
+  accelerometer->enable(timeStep);
+  gyro->enable(timeStep);
+  cam->enable(timeStep);
   
   lmotor->setPosition(std::numeric_limits<double>::infinity());
   rmotor->setPosition(std::numeric_limits<double>::infinity());
   lmotor->setVelocity(0);
   rmotor->setVelocity(0);
+
+  //double gain = 0.005;
+  //double left_dist = 0.0; //distance value of left sensor
+  //double right_dist = 0.0; //distance valur of right sensor
+  //double sensor_diff = 0.0; //sensor_diff = left_dist  - right_dist
+  double left_speed = INPUT_SPEED;  //left motor speed
+  double right_speed = INPUT_SPEED; //right motor speed
+
+  double gains[3] = {0.01, 0.0075, 0.005}; //order: l&r, lfl&rfr, fl&fr
+  double left_distances[3] = {0, 0, 0};    //order: left, leftfrontleft, frontleft
+  double right_distances[3] = {0, 0, 0};   //order: right, rightfrontright, frontright
+  double diffs[3] = {0, 0, 0};             //order: (left - right), (leftfrontleft - rightfrontright), (frontleft - frontright)
+
+  double maxdiff;
+  int maxdiffindex = 0;
+
   // Main loop:
   // - perform simulation steps until Webots is stopping the controller
   while (robot->step(timeStep) != -1) {
-    // Read the sensors:
-    // Enter here functions to read sensor data, like:
-    //  double val = ds->getValue();
-    lmotor->setVelocity(10);
-    rmotor->setVelocity(10);
-     // Process sensor data here.
+  
+    std::cout << "left velocity: " << left_speed << std::endl;
+    std::cout << "right velocity: " << right_speed << std::endl;
+    std::cout << "diff: " << maxdiff << std::endl;
+    
+    for (int i = 0; i < SENSOR_ARRAY_LENGTHS;  i++) {
+      std::cout << "diffs" << i << ": " << diffs[i] << std::endl;
+    }
+    /*
+    lmotor->setVelocity(left_speed);
+    rmotor->setVelocity(right_speed);
 
-    // Enter here functions to send actuator commands, like:
-    //  motor->setPosition(10.0);
+    left_dist  = frontLeftDs->getValue();
+    right_dist = frontRightDs->getValue();
+    
+    sensor_diff = left_dist - right_dist;
+    
+    left_speed  = 8 + (sensor_diff*gain);
+    right_speed = 8 - (sensor_diff*gain);
+     */
+
+    lmotor->setVelocity(left_speed);
+    rmotor->setVelocity(right_speed);
+
+    //initialise left and right sensor arrays with sensor values
+    left_distances[0] = leftDs->getValue();
+    left_distances[1] = leftFrontLeftDs->getValue();
+    left_distances[2] = frontLeftDs->getValue();
+
+    right_distances[0] = rightDs->getValue();
+    right_distances[1] = rightFrontRightDs->getValue();
+    right_distances[2] = frontRightDs->getValue();
+
+    diffs[0] = left_distances[0] - right_distances[0];
+    diffs[1] = left_distances[1] - right_distances[1];
+    diffs[2] = left_distances[2] - right_distances[2];
+
+    auto [maxdiff,  maxdiffindex] = getmaxdiff(diffs);
+
+    left_speed = INPUT_SPEED + (maxdiff * gains[maxdiffindex]);
+    right_speed = INPUT_SPEED - (maxdiff * gains[maxdiffindex]);
+    
   };
 
   // Enter here exit cleanup code.
