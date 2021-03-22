@@ -28,7 +28,7 @@ using namespace webots;
 // The arguments of the main function can be specified by the
 // "controllerArgs" field of the Robot node
 
-#define INPUT_SPEED 8.0
+#define INPUT_SPEED 8.5
 #define SENSOR_ARRAY_LENGTHS 3
 
 int main(int argc, char **argv) {
@@ -81,7 +81,7 @@ int main(int argc, char **argv) {
   double left_speed = INPUT_SPEED;  //left motor speed
   double right_speed = INPUT_SPEED; //right motor speed
 
-  double gain = 0.01;
+  double gain = 0.035;
   double left_distances[3] = {0, 0, 0};    //order: left, leftfrontleft, frontleft
   double right_distances[3] = {0, 0, 0};   //order: right, rightfrontright, frontright
 
@@ -110,8 +110,8 @@ int main(int argc, char **argv) {
     right_distances[2] = frontRightDs->getValue();
 
 
-    left_avg = (left_distances[0] + left_distances[1] + left_distances[2])/SENSOR_ARRAY_LENGTHS;
-    right_avg = (right_distances[0] + right_distances[1] + right_distances[2])/SENSOR_ARRAY_LENGTHS;
+    left_avg = ((left_distances[0] * 0.2) + (left_distances[1]*0.5) + (left_distances[2]*0.75))/SENSOR_ARRAY_LENGTHS;
+    right_avg = ((right_distances[0]*0.2) + (right_distances[1]*0.5)+ (right_distances[2]*0.75))/SENSOR_ARRAY_LENGTHS;
     avg_sensor_diff  = left_avg - right_avg;
 
     left_speed = INPUT_SPEED + (avg_sensor_diff * gain);

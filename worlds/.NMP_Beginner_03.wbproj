@@ -8,4 +8,4 @@ orthographicViewHeight: 1
 textFiles: 0 "controllers/NMP_Controller/NMP_Controller.cpp"
 globalOptionalRendering: DistanceSensorRays
 consoles: Console:All:All
-renderingDevicePerspectives: ROBOT_RED:camera;1;0.317188;0;0
+renderingDevicePerspectives: ROBOT_RED:camera;0;0.317188;0;0
