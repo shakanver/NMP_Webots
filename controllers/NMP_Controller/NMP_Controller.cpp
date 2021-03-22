@@ -31,28 +31,6 @@ using namespace webots;
 #define INPUT_SPEED 8.0
 #define SENSOR_ARRAY_LENGTHS 3
 
-//helper functions
-
-//takes in an array, returns the maximum value of the array and its corresponding index
-std::tuple<double, int> getmaxdiff(double values[])
-{
-  double max = values[0];
-  int maxindex = 0;
-
-  for (int i = 1; i < SENSOR_ARRAY_LENGTHS; i++)
-  {
-    if (abs(values[i]) >= abs(max))
-    {
-      max = values[i];
-      maxindex = i;
-    }
-  }
-  
-  std::cout <<  "maxdiff: " << max <<  std::endl;
-
-  return std::make_tuple(max, maxindex);
-}
-
 int main(int argc, char **argv) {
   // create the Robot instance.
   Robot *robot = new Robot();
@@ -103,13 +81,13 @@ int main(int argc, char **argv) {
   double left_speed = INPUT_SPEED;  //left motor speed
   double right_speed = INPUT_SPEED; //right motor speed
 
-  double gains[3] = {0.01, 0.0075, 0.005}; //order: l&r, lfl&rfr, fl&fr
+  double gain = 0.01;
   double left_distances[3] = {0, 0, 0};    //order: left, leftfrontleft, frontleft
   double right_distances[3] = {0, 0, 0};   //order: right, rightfrontright, frontright
-  double diffs[3] = {0, 0, 0};             //order: (left - right), (leftfrontleft - rightfrontright), (frontleft - frontright)
 
-  double maxdiff;
-  int maxdiffindex = 0;
+  double left_avg = 0;
+  double right_avg = 0;
+  double avg_sensor_diff = 0;
 
   // Main loop:
   // - perform simulation steps until Webots is stopping the controller
@@ -117,24 +95,8 @@ int main(int argc, char **argv) {
   
     std::cout << "left velocity: " << left_speed << std::endl;
     std::cout << "right velocity: " << right_speed << std::endl;
-    std::cout << "diff: " << maxdiff << std::endl;
+    std::cout << "diff: " << avg_sensor_diff << std::endl;
     
-    for (int i = 0; i < SENSOR_ARRAY_LENGTHS;  i++) {
-      std::cout << "diffs" << i << ": " << diffs[i] << std::endl;
-    }
-    /*
-    lmotor->setVelocity(left_speed);
-    rmotor->setVelocity(right_speed);
-
-    left_dist  = frontLeftDs->getValue();
-    right_dist = frontRightDs->getValue();
-    
-    sensor_diff = left_dist - right_dist;
-    
-    left_speed  = 8 + (sensor_diff*gain);
-    right_speed = 8 - (sensor_diff*gain);
-     */
-
     lmotor->setVelocity(left_speed);
     rmotor->setVelocity(right_speed);
 
@@ -147,14 +109,13 @@ int main(int argc, char **argv) {
     right_distances[1] = rightFrontRightDs->getValue();
     right_distances[2] = frontRightDs->getValue();
 
-    diffs[0] = left_distances[0] - right_distances[0];
-    diffs[1] = left_distances[1] - right_distances[1];
-    diffs[2] = left_distances[2] - right_distances[2];
 
-    auto [maxdiff,  maxdiffindex] = getmaxdiff(diffs);
+    left_avg = (left_distances[0] + left_distances[1] + left_distances[2])/SENSOR_ARRAY_LENGTHS;
+    right_avg = (right_distances[0] + right_distances[1] + right_distances[2])/SENSOR_ARRAY_LENGTHS;
+    avg_sensor_diff  = left_avg - right_avg;
 
-    left_speed = INPUT_SPEED + (maxdiff * gains[maxdiffindex]);
-    right_speed = INPUT_SPEED - (maxdiff * gains[maxdiffindex]);
+    left_speed = INPUT_SPEED + (avg_sensor_diff * gain);
+    right_speed = INPUT_SPEED - (avg_sensor_diff * gain);
     
   };
 
