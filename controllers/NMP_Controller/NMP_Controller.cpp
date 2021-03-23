@@ -1,8 +1,8 @@
 // File:          NMP_Controller.cpp
-// Date:
-// Description:
-// Author:
-// Modifications:
+// Date:          23/03/2021
+// Description:   A controller used to manually control the e-puck
+// Author:        Stephanie Liaw
+// Modifications: Added a Description
 
 // You may need to add webots include files such as
 // <webots/DistanceSensor.hpp>, <webots/Motor.hpp>, etc.
@@ -60,6 +60,7 @@ int main(int argc, char **argv) {
   DistanceSensor *rightFrontRightDs= robot->getDistanceSensor("ds4");
   Camera * cam = robot->getCamera("camera");
   Keyboard *keyboard = robot->getKeyboard();
+  Camera * LeftCam = robot->getLeftCamera("LeftCamera");
   //Accelerometer * accelerometer = robot->getAccelerometer("accelerometer");
   //Gyro *gyro = robot->getGyro("gyro");
       
