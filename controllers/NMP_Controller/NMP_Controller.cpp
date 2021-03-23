@@ -15,6 +15,8 @@
 #include <webots/Accelerometer.hpp>
 #include <webots/Gyro.hpp>
 #include <limits>
+#include <tuple>
+
 // All the webots classes are defined in the "webots" namespace
 using namespace webots;
 
@@ -25,6 +27,10 @@ using namespace webots;
 // a controller program.
 // The arguments of the main function can be specified by the
 // "controllerArgs" field of the Robot node
+
+#define INPUT_SPEED 10
+#define SENSOR_ARRAY_LENGTHS 3
+
 int main(int argc, char **argv) {
   // create the Robot instance.
   Robot *robot = new Robot();
@@ -53,32 +59,64 @@ int main(int argc, char **argv) {
 
   // Enable the sensors, feel free to change the sampling rate
   lidar->enable(50);
-  frontLeftDs->enable(100);
-  frontRightDs->enable(100);
-  leftDs->enable(100);
-  rightDs->enable(100);
-  leftFrontLeftDs->enable(100);
-  rightFrontRightDs->enable(100);
-  accelerometer->enable(100);
-  gyro->enable(100);
-  cam->enable(50);
+  frontLeftDs->enable(timeStep);
+  frontRightDs->enable(timeStep);
+  leftDs->enable(timeStep);
+  rightDs->enable(timeStep);
+  leftFrontLeftDs->enable(timeStep);
+  rightFrontRightDs->enable(timeStep);
+  accelerometer->enable(timeStep);
+  gyro->enable(timeStep);
+  cam->enable(timeStep);
   
   lmotor->setPosition(std::numeric_limits<double>::infinity());
   rmotor->setPosition(std::numeric_limits<double>::infinity());
   lmotor->setVelocity(0);
   rmotor->setVelocity(0);
+
+  //double gain = 0.005;
+  //double left_dist = 0.0; //distance value of left sensor
+  //double right_dist = 0.0; //distance valur of right sensor
+  //double sensor_diff = 0.0; //sensor_diff = left_dist  - right_dist
+  double left_speed = INPUT_SPEED;  //left motor speed
+  double right_speed = INPUT_SPEED; //right motor speed
+
+  double gain = 0.035;
+  double left_distances[3] = {0, 0, 0};    //order: left, leftfrontleft, frontleft
+  double right_distances[3] = {0, 0, 0};   //order: right, rightfrontright, frontright
+
+  double left_avg = 0;
+  double right_avg = 0;
+  double avg_sensor_diff = 0;
+
   // Main loop:
   // - perform simulation steps until Webots is stopping the controller
   while (robot->step(timeStep) != -1) {
-    // Read the sensors:
-    // Enter here functions to read sensor data, like:
-    //  double val = ds->getValue();
-    lmotor->setVelocity(10);
-    rmotor->setVelocity(10);
-     // Process sensor data here.
+  
+    std::cout << "left velocity: " << left_speed << std::endl;
+    std::cout << "right velocity: " << right_speed << std::endl;
+    std::cout << "diff: " << avg_sensor_diff << std::endl;
+    
+    lmotor->setVelocity(left_speed);
+    rmotor->setVelocity(right_speed);
 
-    // Enter here functions to send actuator commands, like:
-    //  motor->setPosition(10.0);
+    //initialise left and right sensor arrays with sensor values
+    left_distances[0] = leftDs->getValue();
+    left_distances[1] = leftFrontLeftDs->getValue();
+    left_distances[2] = frontLeftDs->getValue();
+
+    right_distances[0] = rightDs->getValue();
+    right_distances[1] = rightFrontRightDs->getValue();
+    right_distances[2] = frontRightDs->getValue();
+
+
+    left_avg = ((left_distances[0] * 0.2) + (left_distances[1]*0.5) + (left_distances[2]*0.75))/SENSOR_ARRAY_LENGTHS;
+    right_avg = ((right_distances[0]*0.2) + (right_distances[1]*0.5)+ (right_distances[2]*0.75))/SENSOR_ARRAY_LENGTHS;
+    avg_sensor_diff  = left_avg - right_avg;
+
+    left_speed = INPUT_SPEED + (avg_sensor_diff * gain);
+    right_speed = INPUT_SPEED - (avg_sensor_diff * gain);
+    
   };
 
   // Enter here exit cleanup code.
