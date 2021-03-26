@@ -7,6 +7,8 @@
 // You may need to add webots include files such as
 // <webots/DistanceSensor.hpp>, <webots/Motor.hpp>, etc.
 // and/or to add some other includes
+#include <iostream> 
+#include <iomanip> 
 #include <webots/Robot.hpp>
 #include <webots/Lidar.hpp>
 #include <webots/Motor.hpp>
@@ -15,6 +17,7 @@
 #include <webots/Accelerometer.hpp>
 #include <webots/Keyboard.hpp>
 #include <webots/Gyro.hpp>
+#include <webots/display.hpp>
 #include <limits>
 #include <tuple>
 
@@ -31,14 +34,10 @@ using namespace webots;
 
 #define INPUT_SPEED 10
 #define SENSOR_ARRAY_LENGTHS 3
-#define MAX_MOTOR_SPEED 3
+#define MAX_MOTOR_SPEED 5
 
-void redManualMove(const int key, webots::Motor *leftMotor, webots::Motor *rightMotor);
-void moveBackward(webots::Motor *leftMotor, webots::Motor *rightMotor);
-void turnRight(webots::Motor *leftMotor, webots::Motor *rightMotor);
-void turnLeft(webots::Motor *leftMotor, webots::Motor *rightMotor);
-void moveForward(webots::Motor *leftMotor, webots::Motor *rightMotor);
-void stop(webots::Motor *leftMotor, webots::Motor *rightMotor);    
+void redManualMove(const int key1, const int key2, webots::Motor *leftMotor, webots::Motor *rightMotor);
+
 
 int main(int argc, char **argv) {
   // create the Robot instance.
@@ -49,18 +48,23 @@ int main(int argc, char **argv) {
   //  Motor *motor = robot->getMotor("motorname");
   //  DistanceSensor *ds = robot->getDistanceSensor("dsname");
   //  ds->enable(timeStep);
-  //Lidar *lidar = robot->getLidar("lidar");
+  Lidar *lidar = robot->getLidar("lidar");
   Motor *lmotor = robot->getMotor("left wheel motor");
   Motor *rmotor = robot->getMotor("right wheel motor");
+  // in order of left to right
+  DistanceSensor *leftDs = robot->getDistanceSensor("ds3");
+  DistanceSensor *leftFrontLeftDs = robot->getDistanceSensor("ds5");
   DistanceSensor *frontLeftDs = robot->getDistanceSensor("ds2");
   DistanceSensor *frontRightDs = robot->getDistanceSensor("ds1");
-  DistanceSensor *leftDs = robot->getDistanceSensor("ds3");
-  DistanceSensor *rightDs = robot->getDistanceSensor("ds0");
-  DistanceSensor *leftFrontLeftDs = robot->getDistanceSensor("ds5");
   DistanceSensor *rightFrontRightDs= robot->getDistanceSensor("ds4");
+  DistanceSensor *rightDs = robot->getDistanceSensor("ds0");
+  Display *disp = robot->getDisplay("display");
+   
+
+
   Camera * cam = robot->getCamera("camera");
   Keyboard *keyboard = robot->getKeyboard();
-  Camera * LeftCam = robot->getLeftCamera("LeftCamera");
+ // Camera * LeftCam = robot->getLeftCamera("LeftCamera"); // this isn't added to the robot yet
   //Accelerometer * accelerometer = robot->getAccelerometer("accelerometer");
   //Gyro *gyro = robot->getGyro("gyro");
       
@@ -70,7 +74,7 @@ int main(int argc, char **argv) {
 
 
   // Enable the sensors, feel free to change the sampling rate
-  //lidar->enable(50);
+  lidar->enable(2);
   frontLeftDs->enable(timeStep);
   frontRightDs->enable(timeStep);
   leftDs->enable(timeStep);
@@ -81,12 +85,13 @@ int main(int argc, char **argv) {
   //gyro->enable(timeStep);
   cam->enable(timeStep);
   keyboard->enable(timeStep);
-  
-  lmotor->setPosition(std::numeric_limits<double>::infinity());
-  rmotor->setPosition(std::numeric_limits<double>::infinity());
+  lmotor->setPosition(INFINITY);
+  rmotor->setPosition(INFINITY);
+
   lmotor->setVelocity(0);
   rmotor->setVelocity(0);
-  int key {-1};
+  
+
 
   /*
   //double gain = 0.005;
@@ -107,15 +112,41 @@ int main(int argc, char **argv) {
 
   // Main loop:
   // - perform simulation steps until Webots is stopping the controller
-  while (robot->step(timeStep) != -1) {
-        const int prevKey = key;
-        key = keyboard->getKey();
-        if(key != prevKey){
-            lmotor->setPosition(INFINITY);
-            rmotor->setPosition(INFINITY);
-            redManualMove(key, lmotor, rmotor);
-        }
     
+    const int disp_width = disp->getWidth();
+    const int disp_height = disp->getHeight();
+    const int size = lidar->getHorizontalResolution();
+    
+  while (robot->step(timeStep) != -1) {
+        
+        int key1 = keyboard->getKey();
+        int key2 = keyboard->getKey();
+            redManualMove(key1,key2, lmotor, rmotor);
+     
+
+    
+    
+        const float *arr = lidar->getLayerRangeImage(0); // values range from 0.0 to 1.0
+       // std::cout << "time=" << robot->getTime() << "||";
+        disp->setColor(0xFFFFFF);
+        disp->fillRectangle(0,0,disp_width, disp_height);
+        for (int i = 0; i < size; i++) {
+            
+            float angle = lidar->getFov() * i / size;
+            float offset = lidar->getFov()/2 - M_PI;
+            float k = 120.0;// display scaling factor
+            float x = k * arr[i] * cos(angle + offset);
+            float y = k * arr[i] * sin(angle + offset);
+            disp->setColor(0x00FF00);
+            disp->drawLine(disp_width/2, disp_height/2, disp_width/2 + k * cos(offset), disp_height/2 + k * sin(offset));
+            disp->drawLine(disp_width/2, disp_height/2,disp_width/2 + k * cos(offset + lidar->getFov()), disp_height/2 + k * sin(offset + lidar->getFov()));
+            disp->setColor(0xFF0000);
+            disp->drawPixel(disp_width/2 + x, disp_height/2 + y);
+            //std :: cout <<std::setprecision(3)<< arr[i] << ", ";
+        }
+        //std::cout << '\n';
+    
+
   };
 
   // Enter here exit cleanup code.
@@ -125,55 +156,47 @@ int main(int argc, char **argv) {
 }
 
 //Settng keys to move the robot manually
-void redManualMove(const int key, webots::Motor *leftMotor, webots::Motor *rightMotor){
-    switch(key){
+void redManualMove(const int key1, const int key2, webots::Motor *leftMotor, webots::Motor *rightMotor){
+    float leftvel = 0;
+    float rightvel = 0;
+    switch(key1){
         case Keyboard::UP:
-            moveForward(leftMotor, rightMotor);
+            leftvel += 1;
+            rightvel += 1;
             break;
         case Keyboard::DOWN:
-            moveBackward(leftMotor, rightMotor);
+            leftvel += -1;
+            rightvel += -1;
             break;
         case Keyboard::LEFT:
-            turnLeft(leftMotor, rightMotor);
+            leftvel += -0.2;
+            rightvel += 0.2;
             break;
         case Keyboard::RIGHT:
-            turnRight(leftMotor, rightMotor);
+            leftvel += 0.2;
+            rightvel += -0.2;
             break;
-        case ' ':
-            stop(leftMotor, rightMotor);
-            break;
-
     }
-}
-
-
-void moveForward(webots::Motor *leftMotor, webots::Motor *rightMotor){
-    leftMotor->setVelocity(MAX_MOTOR_SPEED);
-    rightMotor->setVelocity(MAX_MOTOR_SPEED);
-
-}
-
-void moveBackward(webots::Motor *leftMotor, webots::Motor *rightMotor){
-    leftMotor->setVelocity(-1 *MAX_MOTOR_SPEED);
-    rightMotor->setVelocity(-1 *MAX_MOTOR_SPEED);
-}
-
-void turnRight(webots::Motor *leftMotor, webots::Motor *rightMotor){
-    
-    // set up the motor speeds at 10% of the MAX_MOTOR_SPEED.
-    leftMotor->setVelocity(1*MAX_MOTOR_SPEED);
-    rightMotor->setVelocity(0.5*MAX_MOTOR_SPEED);  
-}
-
-void turnLeft(webots::Motor *leftMotor, webots::Motor *rightMotor){
-
-    leftMotor->setVelocity(0.5*MAX_MOTOR_SPEED);
-    rightMotor->setVelocity(1*MAX_MOTOR_SPEED);
-}
-void stop(webots::Motor *leftMotor, webots::Motor *rightMotor){
-
-    leftMotor->setVelocity(0.0);
-    rightMotor->setVelocity(0.0);
+    switch(key2){
+        case Keyboard::UP:
+            leftvel += 1;
+            rightvel += 1;
+            break;
+        case Keyboard::DOWN:
+            leftvel += -1;
+            rightvel += -1;
+            break;
+        case Keyboard::LEFT:
+            leftvel += -0.2;
+            rightvel += 0.2;
+            break;
+        case Keyboard::RIGHT:
+            leftvel += 0.2;
+            rightvel += -0.2;
+            break;
+    }
+    leftMotor->setVelocity(leftvel * MAX_MOTOR_SPEED);
+    rightMotor->setVelocity(rightvel * MAX_MOTOR_SPEED);
 }
 
     
