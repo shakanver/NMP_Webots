@@ -28,7 +28,7 @@ using namespace webots;
 // The arguments of the main function can be specified by the
 // "controllerArgs" field of the Robot node
 
-#define INPUT_SPEED 8.5
+#define INPUT_SPEED 10
 #define SENSOR_ARRAY_LENGTHS 3
 
 int main(int argc, char **argv) {
