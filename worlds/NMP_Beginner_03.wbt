@@ -1,10 +1,10 @@
-#VRML_SIM R2021a utf8
+#VRML_SIM R2020b utf8
 WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.3555970108041349 0.9049390459149828 0.23374363966885706 5.102563261304765
-  position -2.7197974719630817 1.709529477814412 1.5221785134821677
+  orientation 0.47467241724692044 0.7153447712426013 0.5128040118415962 4.3444181243865225
+  position -0.9407476307728109 2.4180369986732817 0.23951174760891175
 }
 TexturedBackground {
 }
@@ -164,14 +164,22 @@ DEF Walls Group {
   ]
 }
 DEF ROBOT_RED Robot {
-  translation -0.926823 -0.0127381 -0.331878
-  rotation 0.014932602928053275 0.999868196058742 -0.006372431249535548 2.35631
+  translation 0.165081 -0.00980597 -0.0174491
+  rotation 0.014902298662239338 -0.9998849102415855 0.002843899744706686 2.38528
   children [
+    Display {
+      width 256
+      height 256
+    }
     Gyro {
     }
     Accelerometer {
     }
     Lidar {
+      translation 0 0.09 0
+      horizontalResolution 256
+      fieldOfView 3.14159
+      numberOfLayers 1
     }
     DEF MAIN_BODY Transform {
       translation 0 0.0415 0
@@ -191,7 +199,7 @@ DEF ROBOT_RED Robot {
     }
     DEF LEFT_WHEEL HingeJoint {
       jointParameters HingeJointParameters {
-        position 1912.9288321459119
+        position 922.4554790595527
         axis -1 0 0
         anchor 0 0.025 0
       }
@@ -201,8 +209,8 @@ DEF ROBOT_RED Robot {
         }
       ]
       endPoint DEF LEFT_WHEEL Solid {
-        translation -0.029999999999999055 0.025 0
-        rotation 1 0 0 2.1441712366824106
+        translation -0.030000000000000006 0.025 0
+        rotation -0.9989441805298487 0.02750676566050536 0.03679540770866585 6.12506697864787
         children [
           DEF WHEEL Transform {
             rotation 0 0 1 1.57
@@ -246,7 +254,7 @@ DEF ROBOT_RED Robot {
     }
     DEF RIGHT_WHEEL HingeJoint {
       jointParameters HingeJointParameters {
-        position 1176.257490414859
+        position 144.32756075465952
         axis -1 0 0
         anchor 0 0.025 0
       }
@@ -256,8 +264,8 @@ DEF ROBOT_RED Robot {
         }
       ]
       endPoint DEF RIGHT_WHEEL Solid {
-        translation 0.029999999999999992 0.025 0
-        rotation -1 0 0 2.9976732794558316
+        translation 0.029999999999999763 0.025 0
+        rotation -1 0 0 1.5101339967086103
         children [
           DEF WHEEL Transform {
             rotation 0 0 1 1.57

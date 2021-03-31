@@ -1,10 +1,10 @@
-#VRML_SIM R2021a utf8
+#VRML_SIM R2020b utf8
 WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.25248542417973413 0.9242872598509981 0.28625892449653556 4.784538483969855
-  position -4.144719301935508 2.356650994482326 1.5730713170621877
+  orientation 1 0 0 4.71238898038469
+  position 0.5961747526051834 3.380925497063967 0.4410256664725474
 }
 TexturedBackground {
 }
@@ -437,14 +437,22 @@ DEF Walls Group {
   ]
 }
 DEF ROBOT_RED Robot {
-  translation -0.586873 0 0.586854
-  rotation 0 1 0 2.3561996938995744
+  translation 0.219969 -0.00859435 0.0407386
+  rotation 0.007153327235738219 -0.9992716138512555 -0.03748428551493949 -0.7568853071795862
   children [
+    Display {
+      width 256
+      height 256
+    }
     Gyro {
     }
     Accelerometer {
     }
     Lidar {
+      translation 0 0.09 0
+      horizontalResolution 256
+      fieldOfView 3.14159
+      numberOfLayers 1
     }
     DEF MAIN_BODY Transform {
       translation 0 0.0415 0
@@ -464,7 +472,7 @@ DEF ROBOT_RED Robot {
     }
     DEF LEFT_WHEEL HingeJoint {
       jointParameters HingeJointParameters {
-        position 716.4543820994643
+        position 922.4554790595527
         axis -1 0 0
         anchor 0 0.025 0
       }
@@ -474,8 +482,8 @@ DEF ROBOT_RED Robot {
         }
       ]
       endPoint DEF LEFT_WHEEL Solid {
-        translation -0.029999999999999027 0.025 0
-        rotation 1 0 0 4.813412919008581
+        translation -0.030000000000000006 0.025 0
+        rotation -0.9989441805298487 0.02750676566050536 0.03679540770866585 6.12506697864787
         children [
           DEF WHEEL Transform {
             rotation 0 0 1 1.57
@@ -519,7 +527,7 @@ DEF ROBOT_RED Robot {
     }
     DEF RIGHT_WHEEL HingeJoint {
       jointParameters HingeJointParameters {
-        position -20.216961239977245
+        position 144.32756075465952
         axis -1 0 0
         anchor 0 0.025 0
       }
@@ -529,8 +537,8 @@ DEF ROBOT_RED Robot {
         }
       ]
       endPoint DEF RIGHT_WHEEL Solid {
-        translation 0.029999999999999992 0.025 0
-        rotation -0.9999999999999999 0 0 0.32842998874109613
+        translation 0.029999999999999763 0.025 0
+        rotation -1 0 0 1.5101339967086103
         children [
           DEF WHEEL Transform {
             rotation 0 0 1 1.57

@@ -1,10 +1,10 @@
-#VRML_SIM R2021a utf8
+#VRML_SIM R2020b utf8
 WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.8766842731144544 0.38454451512413373 0.289050516625945 1.6730987808300868
-  position 0.5681915818973542 5.904877378379812 -0.14167539379659827
+  orientation -0.7304254995810827 -0.5890292852807084 -0.34572111686072 1.0485414831410502
+  position -2.102352238348637 2.5557718150581437 1.1695780629230543
 }
 TexturedBackground {
 }
@@ -19,393 +19,6 @@ DEF Floor Floor {
   }
 }
 DEF Walls Group {
-}
-DEF ROBOT_RED Robot {
-  translation -0.756577 0.0001 0.756565
-  rotation 0 -1 0 -5.307179586466759e-06
-  children [
-    Gyro {
-    }
-    Accelerometer {
-    }
-    Lidar {
-    }
-    DEF MAIN_BODY Transform {
-      translation 0 0.0415 0
-      children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.980392 1 0.866667
-            roughness 1
-            metalness 0
-          }
-          geometry DEF BODY Cylinder {
-            height 0.08
-            radius 0.045
-          }
-        }
-      ]
-    }
-    DEF LEFT_WHEEL HingeJoint {
-      jointParameters HingeJointParameters {
-        position 716.4543820994643
-        axis -1 0 0
-        anchor 0 0.025 0
-      }
-      device [
-        RotationalMotor {
-          name "left wheel motor"
-        }
-      ]
-      endPoint DEF LEFT_WHEEL Solid {
-        translation -0.02999999999999832 0.025 0
-        rotation 1 0 0 4.813412919008586
-        children [
-          DEF WHEEL Transform {
-            rotation 0 0 1 1.57
-            children [
-              Shape {
-                appearance PBRAppearance {
-                  baseColor 0.196078 0.196078 0.196078
-                  roughness 1
-                  metalness 0
-                }
-                geometry Cylinder {
-                  height 0.01
-                  radius 0.025
-                }
-              }
-            ]
-          }
-        ]
-        name "left wheel"
-        boundingObject DEF WHEEL Transform {
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0 0 1
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.01
-                radius 0.025
-              }
-            }
-          ]
-        }
-        physics DEF PHYSICS_WHEEL Physics {
-          density -1
-          mass 0.05
-        }
-      }
-    }
-    DEF RIGHT_WHEEL HingeJoint {
-      jointParameters HingeJointParameters {
-        position -20.216961239977245
-        axis -1 0 0
-        anchor 0 0.025 0
-      }
-      device [
-        RotationalMotor {
-          name "right wheel motor"
-        }
-      ]
-      endPoint DEF RIGHT_WHEEL Solid {
-        translation 0.029999999999999978 0.025 0
-        rotation -1 0 0 0.3284299887410907
-        children [
-          DEF WHEEL Transform {
-            rotation 0 0 1 1.57
-            children [
-              Shape {
-                appearance PBRAppearance {
-                  baseColor 0.196078 0.196078 0.196078
-                  roughness 1
-                  metalness 0
-                }
-                geometry Cylinder {
-                  height 0.01
-                  radius 0.025
-                }
-              }
-            ]
-          }
-        ]
-        name "right wheel"
-        boundingObject USE WHEEL
-        physics DEF PHYSICS_WHEEL Physics {
-          density -1
-          mass 0.05
-        }
-      }
-    }
-    DEF DS0 DistanceSensor {
-      translation 0.045 0.063 0
-      children [
-        DEF INFRARED Transform {
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.975691 0.981481 0.0252992
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "ds0"
-      lookupTable [
-        0 1000 0
-        0.01 1000 0.01
-        0.1 500 0.01
-        0.9 50 0.01
-        1 10 0
-      ]
-      aperture 1
-    }
-    DEF DS1 DistanceSensor {
-      translation 0.0225 0.063 -0.039
-      rotation 0 1 0 1.0472003061004251
-      children [
-        DEF INFRARED Transform {
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.975691 0.981481 0.0252992
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "ds1"
-      lookupTable [
-        0 1000 0
-        0.01 1000 0.01
-        0.1 500 0.01
-        0.9 50 0.01
-        1 10 0
-      ]
-      aperture 1
-    }
-    DEF DS4 DistanceSensor {
-      translation 0.039 0.063 -0.0233
-      rotation 0 -1 0 -0.5236053071795865
-      children [
-        DEF INFRARED Transform {
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.975691 0.981481 0.0252992
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "ds4"
-      lookupTable [
-        0 1000 0
-        0.01 1000 0.01
-        0.1 500 0.01
-        0.9 50 0.01
-        1 10 0
-      ]
-      aperture 1
-    }
-    DEF DS2 DistanceSensor {
-      translation -0.0225 0.063 -0.039
-      rotation 0 1 0 2.094399693899575
-      children [
-        DEF INFRARED Transform {
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.975691 0.981481 0.0252992
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "ds2"
-      lookupTable [
-        0 1000 0
-        0.01 1000 0.01
-        0.1 500 0.01
-        0.9 50 0.01
-        1 10 0
-      ]
-      aperture 1
-    }
-    DEF DS3 DistanceSensor {
-      translation -0.045 0.063 0
-      rotation 0 1 0 3.141592653589793
-      children [
-        DEF INFRARED Transform {
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.975691 0.981481 0.0252992
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "ds3"
-      lookupTable [
-        0 1000 0
-        0.01 1000 0.01
-        0.1 500 0.01
-        0.9 50 0.01
-        1 10 0
-      ]
-      aperture 1
-    }
-    DEF DS5 DistanceSensor {
-      translation -0.039 0.063 -0.022
-      rotation 0 -1 0 -2.6179953071795863
-      children [
-        DEF INFRARED Transform {
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.975691 0.981481 0.0252992
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "ds5"
-      lookupTable [
-        0 1000 0
-        0.01 1000 0.01
-        0.1 500 0.01
-        0.9 50 0.01
-        1 10 0
-      ]
-      aperture 1
-    }
-    DEF CAMERA Camera {
-      translation 0 0.045 -0.045
-      children [
-        Transform {
-          rotation 1 0 0 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 1 0 0
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.01
-                radius 0.007
-              }
-            }
-          ]
-        }
-      ]
-      fieldOfView 1.047
-      width 1280
-      height 720
-      antiAliasing TRUE
-      noise 0.01
-    }
-    DEF LED LED {
-      translation 0 0.08 0
-      children [
-        Group {
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.666667 0 0
-                roughness 1
-                metalness 0
-              }
-              geometry DEF LED_SHAPE Sphere {
-                radius 0.01
-              }
-            }
-            PointLight {
-              attenuation 0 0 1
-              color 0 0 0
-              intensity 0.5
-              location 0 0.03 0
-              on FALSE
-              castShadows TRUE
-            }
-          ]
-        }
-      ]
-      color [
-        1 0 0
-        0 1 0
-        0 0 1
-        1 1 0
-        0 1 1
-        1 0 1
-        1 0.647059 0
-        0.627451 0.12549 0.941176
-        0.545098 0.411765 0.0784314
-      ]
-    }
-  ]
-  name "ROBOT_RED"
-  boundingObject DEF MYBOT_BOUNDING Transform {
-    translation 0 0.0415 0
-    children [
-      DEF BODY Cylinder {
-        height 0.08
-        radius 0.045
-      }
-    ]
-  }
-  physics DEF MYBOT_PHYSICS Physics {
-    density -1
-    mass 0.5
-  }
-  controller "NMP_Controller"
 }
 Transform {
   scale 0.2 0.2 0.2
@@ -696,4 +309,399 @@ Transform {
       name "traffic cone(7)"
     }
   ]
+}
+DEF ROBOT_RED Robot {
+  translation -0.899917 -0.0303696 -0.354162
+  rotation -0.07255817084167566 0.9973465992049513 0.005922237620081607 -0.7621053071795858
+  children [
+    Display {
+      width 256
+      height 256
+    }
+    Gyro {
+    }
+    Accelerometer {
+    }
+    Lidar {
+      translation 0 0.09 0
+      horizontalResolution 256
+      fieldOfView 3.14159
+      numberOfLayers 1
+    }
+    DEF MAIN_BODY Transform {
+      translation 0 0.0415 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.196078 0.196078 0.196078
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BODY Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    DEF LEFT_WHEEL HingeJoint {
+      jointParameters HingeJointParameters {
+        position 1618.0883870123146
+        axis -1 0 0
+        anchor 0 0.025 0
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+        }
+      ]
+      endPoint DEF LEFT_WHEEL Solid {
+        translation -0.029999999999998802 0.025 0
+        rotation -1 0 0 4.608278374340426
+        children [
+          DEF WHEEL Transform {
+            rotation 0 0 1 1.57
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.196078 0.196078 0.196078
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "left wheel"
+        boundingObject DEF WHEEL Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 1
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.01
+                radius 0.025
+              }
+            }
+          ]
+        }
+        physics DEF PHYSICS_WHEEL Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    DEF RIGHT_WHEEL HingeJoint {
+      jointParameters HingeJointParameters {
+        position 989.5368365493819
+        axis -1 0 0
+        anchor 0 0.025 0
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+        }
+      ]
+      endPoint DEF RIGHT_WHEEL Solid {
+        translation 0.029999999999999506 0.025 0
+        rotation -1 0 0 4.772578629366366
+        children [
+          DEF WHEEL Transform {
+            rotation 0 0 1 1.57
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.196078 0.196078 0.196078
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "right wheel"
+        boundingObject USE WHEEL
+        physics DEF PHYSICS_WHEEL Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    DEF DS0 DistanceSensor {
+      translation 0.045 0.063 0
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds0"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS1 DistanceSensor {
+      translation 0.0225 0.063 -0.039
+      rotation 0 1 0 1.0472003061004251
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds1"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS4 DistanceSensor {
+      translation 0.039 0.063 -0.0233
+      rotation 0 -1 0 -0.5236053071795865
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds4"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS2 DistanceSensor {
+      translation -0.0225 0.063 -0.039
+      rotation 0 1 0 2.094399693899575
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds2"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS3 DistanceSensor {
+      translation -0.045 0.063 0
+      rotation 0 1 0 3.141592653589793
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds3"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS5 DistanceSensor {
+      translation -0.039 0.063 -0.022
+      rotation 0 -1 0 -2.6179953071795863
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds5"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF CAMERA Camera {
+      translation 0 0.045 -0.045
+      children [
+        Transform {
+          rotation 1 0 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.01
+                radius 0.007
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1.047
+      width 1280
+      height 720
+      antiAliasing TRUE
+      noise 0.01
+    }
+    DEF LED LED {
+      translation 0 0.08 0
+      children [
+        Group {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry DEF LED_SHAPE Sphere {
+                radius 0.01
+              }
+            }
+            PointLight {
+              attenuation 0 0 1
+              color 0 0 0
+              intensity 0.5
+              location 0 0.03 0
+              on FALSE
+              castShadows TRUE
+            }
+          ]
+        }
+      ]
+      color [
+        1 0 0
+        0 1 0
+        0 0 1
+        1 1 0
+        0 1 1
+        1 0 1
+        1 0.647059 0
+        0.627451 0.12549 0.941176
+        0.545098 0.411765 0.0784314
+      ]
+    }
+  ]
+  name "ROBOT_RED"
+  boundingObject DEF MYBOT_BOUNDING Transform {
+    translation 0 0.0415 0
+    children [
+      DEF BODY Cylinder {
+        height 0.08
+        radius 0.045
+      }
+    ]
+  }
+  physics DEF MYBOT_PHYSICS Physics {
+    density -1
+    mass 0.5
+  }
+  controller "NMP_Controller"
 }

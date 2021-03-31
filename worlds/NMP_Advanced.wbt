@@ -1,10 +1,10 @@
-#VRML_SIM R2021a utf8
+#VRML_SIM R2020b utf8
 WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.9996945748567277 0.010667754130078652 -0.022292510487751292 0.8884105819020557
-  position 0.07874285914261142 2.630051411737886 2.180885021195641
+  orientation -0.8994792043784352 -0.3131916794625219 -0.30470991583173374 1.5770264467982766
+  position -0.20366878508157957 3.405591155350322 0.12209256153495936
 }
 TexturedBackground {
 }
@@ -18,14 +18,22 @@ DEF Floor Floor {
 DEF Walls Group {
 }
 DEF ROBOT_RED Robot {
-  translation -0.21211 0.0001 0.21209
-  rotation 0 1 0 2.3561996938995744
+  translation 0.17288288921297199 -0.0002422963799217498 0.10377212714189674
+  rotation -0.10870982789448469 0.993972805285871 0.014150465408868614 0.2603850175207971
   children [
+    Display {
+      width 256
+      height 256
+    }
     Gyro {
     }
     Accelerometer {
     }
     Lidar {
+      translation 0 0.09 0
+      horizontalResolution 256
+      fieldOfView 3.14159
+      numberOfLayers 1
     }
     DEF MAIN_BODY Transform {
       translation 0 0.0415 0
@@ -45,7 +53,7 @@ DEF ROBOT_RED Robot {
     }
     DEF LEFT_WHEEL HingeJoint {
       jointParameters HingeJointParameters {
-        position 716.4543820994643
+        position 886.7803492701981
         axis -1 0 0
         anchor 0 0.025 0
       }
@@ -55,8 +63,8 @@ DEF ROBOT_RED Robot {
         }
       ]
       endPoint DEF LEFT_WHEEL Solid {
-        translation -0.029999999999998556 0.025 0
-        rotation 1 0 0 4.813412919008584
+        translation -0.029999999999998805 0.025 0
+        rotation -1 0 0 2.149736265056031
         children [
           DEF WHEEL Transform {
             rotation 0 0 1 1.57
@@ -96,11 +104,13 @@ DEF ROBOT_RED Robot {
           density -1
           mass 0.05
         }
+        linearVelocity 1.914444864662041e-07 0.00011882434960488141 7.191975444606499e-07
+        angularVelocity 2.8860217616006563e-05 1.7161812589667222e-08 -7.714406333124865e-06
       }
     }
     DEF RIGHT_WHEEL HingeJoint {
       jointParameters HingeJointParameters {
-        position -20.216961239977245
+        position 137.37147341879128
         axis -1 0 0
         anchor 0 0.025 0
       }
@@ -110,8 +120,8 @@ DEF ROBOT_RED Robot {
         }
       ]
       endPoint DEF RIGHT_WHEEL Solid {
-        translation 0.029999999999999964 0.025 0
-        rotation -1 0 0 0.3284299887410934
+        translation 0.029999999999999763 0.025 0
+        rotation 0.9999999999999999 0 0 5.445953339159623
         children [
           DEF WHEEL Transform {
             rotation 0 0 1 1.57
@@ -136,6 +146,8 @@ DEF ROBOT_RED Robot {
           density -1
           mass 0.05
         }
+        linearVelocity 1.9355743641291785e-07 0.00011882026243203384 7.195099111520962e-07
+        angularVelocity 2.8861716252988306e-05 1.743425777449244e-08 -7.708905033866648e-06
       }
     }
     DEF DS0 DistanceSensor {
@@ -403,6 +415,8 @@ DEF ROBOT_RED Robot {
     mass 0.5
   }
   controller "NMP_Controller"
+  linearVelocity 3.201283235755577e-07 0.00011874214283416262 1.1994731589378312e-06
+  angularVelocity 2.8861067974624675e-05 1.7325567399117226e-08 -7.711698388198604e-06
 }
 Transform {
   scale 0.2 0.2 0.2
