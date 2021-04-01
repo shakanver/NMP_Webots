@@ -88,23 +88,6 @@ int main(int argc, char **argv) {
   rmotor->setVelocity(0);
   int key {-1};
 
-  /*
-  //double gain = 0.005;
-  //double left_dist = 0.0; //distance value of left sensor
-  //double right_dist = 0.0; //distance valur of right sensor
-  //double sensor_diff = 0.0; //sensor_diff = left_dist  - right_dist
-  double left_speed = INPUT_SPEED;  //left motor speed
-  double right_speed = INPUT_SPEED; //right motor speed
-
-  double gain = 0.035;
-  double left_distances[3] = {0, 0, 0};    //order: left, leftfrontleft, frontleft
-  double right_distances[3] = {0, 0, 0};   //order: right, rightfrontright, frontright
-
-  double left_avg = 0;
-  double right_avg = 0;
-  double avg_sensor_diff = 0;
-  */
-
   // Main loop:
   // - perform simulation steps until Webots is stopping the controller
   while (robot->step(timeStep) != -1) {
