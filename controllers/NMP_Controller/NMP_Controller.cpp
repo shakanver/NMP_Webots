@@ -65,6 +65,7 @@ int main(int argc, char **argv) {
   //Gyro *gyro = robot->getGyro("gyro");
       
 
+
   // get the time step of the current world.
   int timeStep = (int)robot->getBasicTimeStep();
 
