@@ -1,0 +1,791 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.29495658299712035 0.9095734775614889 0.29270583025174357 1.9170875024391265
+  position 16.457560397156872 10.8360394706973 -4.017895591263594
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF Floor Floor {
+  rotation 0 1 0 0.7853996938995746
+  size 200 200
+  tileSize 1e-05 1e-05
+  appearance Parquetry {
+    type "dark strip"
+  }
+}
+OilBarrel {
+  translation -0.0636395 0.1 -0.0636395
+  rotation 0 1 0 0.785398
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 0.579823 0.1 0.579823
+  rotation 0 1 0 0.785398
+  name "oil barrel(1)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 1.20912 0.1 1.20912
+  rotation 0 1 0 0.785398
+  name "oil barrel(2)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 1.85253 0.1 1.85253
+  rotation 0 1 0 0.785398
+  name "oil barrel(3)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 2.45352 0.1 2.45352
+  rotation 0 1 0 0.785398
+  name "oil barrel(4)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 3.15348 0.1 3.15348
+  rotation 0 1 0 0.785398
+  name "oil barrel(5)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 3.83222 0.1 3.83222
+  rotation 0 1 0 0.785398
+  name "oil barrel(6)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 4.49684 0.1 4.49684
+  rotation 0 1 0 0.785398
+  name "oil barrel(7)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 5.26751 0.1 4.54633
+  rotation 0 1 0 0.785398
+  name "oil barrel(8)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 5.90387 0.1 3.90997
+  rotation 0 1 0 0.785398
+  name "oil barrel(9)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 6.5402 0.1 3.27364
+  rotation 0 1 0 0.785398
+  name "oil barrel(10)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 6.26446 0.1 2.27674
+  rotation 0 1 0 0.785398
+  name "oil barrel(11)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 5.58568 0.1 1.59796
+  rotation 0 1 0 0.785398
+  name "oil barrel(12)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 4.92813 0.1 0.9404
+  rotation 0 1 0 0.785398
+  name "oil barrel(13)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 4.15037 0.1 0.162587
+  rotation 0 1 0 0.785398
+  name "oil barrel(14)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 3.38677 0.1 -0.601084
+  rotation 0 1 0 0.785398
+  name "oil barrel(15)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 3.00493 0.1 -1.29402
+  rotation 0 1 0 0.785398
+  name "oil barrel(16)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 3.27359 0.1 -2.18488
+  rotation 0 1 0 0.785398
+  name "oil barrel(17)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 3.917 0.1 -2.82829
+  rotation 0 1 0 0.785398
+  name "oil barrel(18)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 4.58867 0.1 -3.49996
+  rotation 0 1 0 0.785398
+  name "oil barrel(19)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 4.58867 0.1 -3.49996
+  rotation 0 1 0 0.785398
+  name "oil barrel(20)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 3.89573 0.1 -4.20706
+  rotation 0 1 0 0.785398
+  name "oil barrel(21)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 3.15326 0.1 -4.94953
+  rotation 0 1 0 0.785398
+  name "oil barrel(22)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 2.46736 0.1 -4.26363
+  rotation 0 1 0 0.785398
+  name "oil barrel(23)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 1.76737 0.1 -3.56364
+  rotation 0 1 0 0.785398
+  name "oil barrel(24)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 1.00372 0.1 -2.79999
+  rotation 0 1 0 0.785398
+  name "oil barrel(25)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation 0.225907 0.1 -2.02222
+  rotation 0 1 0 0.785398
+  name "oil barrel(26)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation -0.530693 0.1 -1.26564
+  rotation 0 1 0 0.785398
+  name "oil barrel(27)"
+  height 0.2
+  radius 0.1
+}
+OilBarrel {
+  translation -0.629688 0.1 -0.572699
+  rotation 0 1 0 0.785398
+  name "oil barrel(28)"
+  height 0.2
+  radius 0.1
+}
+DEF Walls Group {
+}
+DEF ROBOT_RED Robot {
+  translation 0.12612886289326933 -0.0002270879851900276 1.1749333807137514
+  rotation -0.005902598121791471 0.9998813529640834 -0.014228117589001712 -2.35642562059651
+  children [
+    Gyro {
+    }
+    Accelerometer {
+    }
+    Lidar {
+    }
+    DEF MAIN_BODY Transform {
+      translation 0 0.0415 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.980392 1 0.866667
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BODY Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    DEF LEFT_WHEEL HingeJoint {
+      jointParameters HingeJointParameters {
+        position 757.0943820017131
+        axis -1 0 0
+        anchor 0 0.025 0
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+        }
+      ]
+      endPoint DEF LEFT_WHEEL Solid {
+        translation -0.02999999999999823 0.025 0
+        rotation 1 0 0 1.8725248598372446
+        children [
+          DEF WHEEL Transform {
+            rotation 0 0 1 1.57
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.196078 0.196078 0.196078
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "left wheel"
+        boundingObject DEF WHEEL Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 1
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.01
+                radius 0.025
+              }
+            }
+          ]
+        }
+        physics DEF PHYSICS_WHEEL Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    DEF RIGHT_WHEEL HingeJoint {
+      jointParameters HingeJointParameters {
+        position 20.42303861285008
+        axis -1 0 0
+        anchor 0 0.025 0
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+        }
+      ]
+      endPoint DEF RIGHT_WHEEL Solid {
+        translation 0.02999999999999995 0.025 0
+        rotation -0.9999999999999999 0 0 3.2693179984908975
+        children [
+          DEF WHEEL Transform {
+            rotation 0 0 1 1.57
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.196078 0.196078 0.196078
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "right wheel"
+        boundingObject USE WHEEL
+        physics DEF PHYSICS_WHEEL Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    DEF DS0 DistanceSensor {
+      translation 0.045 0.063 0
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds0"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS1 DistanceSensor {
+      translation 0.0225 0.063 -0.039
+      rotation 0 1 0 1.0472003061004251
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds1"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS4 DistanceSensor {
+      translation 0.039 0.063 -0.0233
+      rotation 0 -1 0 -0.5236053071795865
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds4"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS2 DistanceSensor {
+      translation -0.0225 0.063 -0.039
+      rotation 0 1 0 2.094399693899575
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds2"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS3 DistanceSensor {
+      translation -0.045 0.063 0
+      rotation 0 1 0 3.141592653589793
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds3"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF DS5 DistanceSensor {
+      translation -0.039 0.063 -0.022
+      rotation 0 -1 0 -2.6179953071795863
+      children [
+        DEF INFRARED Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds5"
+      lookupTable [
+        0 1000 0
+        0.01 1000 0.01
+        0.1 500 0.01
+        0.9 50 0.01
+        1 10 0
+      ]
+      aperture 1
+    }
+    DEF CAMERA Camera {
+      translation 0 0.045 -0.045
+      children [
+        Transform {
+          rotation 1 0 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.01
+                radius 0.007
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1.047
+      width 1280
+      height 720
+      antiAliasing TRUE
+      noise 0.01
+    }
+    DEF LED LED {
+      translation 0 0.08 0
+      children [
+        Group {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry DEF LED_SHAPE Sphere {
+                radius 0.01
+              }
+            }
+            PointLight {
+              attenuation 0 0 1
+              color 0 0 0
+              intensity 0.5
+              location 0 0.03 0
+              on FALSE
+              castShadows TRUE
+            }
+          ]
+        }
+      ]
+      color [
+        1 0 0
+        0 1 0
+        0 0 1
+        1 1 0
+        0 1 1
+        1 0 1
+        1 0.647059 0
+        0.627451 0.12549 0.941176
+        0.545098 0.411765 0.0784314
+      ]
+    }
+  ]
+  name "ROBOT_RED"
+  boundingObject DEF MYBOT_BOUNDING Transform {
+    translation 0 0.0415 0
+    children [
+      DEF BODY Cylinder {
+        height 0.08
+        radius 0.045
+      }
+    ]
+  }
+  physics DEF MYBOT_PHYSICS Physics {
+    density -1
+    mass 0.5
+  }
+  controller "NMP_Controller"
+}
+Transform {
+  scale 0.2 0.2 0.2
+  children [
+    TrafficCone {
+      translation -4.64777 0 4.54841
+      rotation 0 1 0 0.785398
+      name "traffic cone(7)"
+    }
+    TrafficCone {
+      translation -1.26773 0 7.92845
+      rotation 0 1 0 0.785398
+      name "traffic cone(1)"
+    }
+    TrafficCone {
+      translation 1.65976 0 10.856
+      rotation 0 1 0 0.785398
+      name "traffic cone(2)"
+    }
+    TrafficCone {
+      translation 4.49531 0 13.6918
+      rotation 0 1 0 0.785398
+      name "traffic cone(3)"
+    }
+    TrafficCone {
+      translation 7.2955 0 16.4925
+      rotation 0 1 0 0.785398
+      name "traffic cone(4)"
+    }
+    TrafficCone {
+      translation 10.7606 0 19.9576
+      rotation 0 1 0 0.785398
+      name "traffic cone(5)"
+    }
+    TrafficCone {
+      translation 14.261 0 23.458
+      rotation 0 1 0 0.785398
+      name "traffic cone(6)"
+    }
+    TrafficCone {
+      translation 17.4216 0 26.6186
+      rotation 0 1 0 0.785398
+      name "traffic cone(8)"
+    }
+    TrafficCone {
+      translation 21.3532 0 28.2732
+      rotation 0 1 0 0.785398
+      name "traffic cone(17)"
+    }
+    TrafficCone {
+      translation 25.8507 0 28.0751
+      rotation 0 1 0 0.785398
+      name "traffic cone(9)"
+    }
+    TrafficCone {
+      translation 29.6904 0 26.3424
+      rotation 0 1 0 0.785398
+      name "traffic cone(10)"
+    }
+    TrafficCone {
+      translation 33.0206 0 23.0122
+      rotation 0 1 0 0.785398
+      name "traffic cone(11)"
+    }
+    TrafficCone {
+      translation 36.2095 0 19.8233
+      rotation 0 1 0 0.785398
+      name "traffic cone(12)"
+    }
+    TrafficCone {
+      translation 37.8859 0 15.5879
+      rotation 0 1 0 0.785398
+      name "traffic cone(13)"
+    }
+    TrafficCone {
+      translation 36.8252 0 11.0899
+      rotation 0 1 0 0.785398
+      name "traffic cone(14)"
+    }
+    TrafficCone {
+      translation 34.3503 0 7.58276
+      rotation 0 1 0 0.785398
+      name "traffic cone(15)"
+    }
+    TrafficCone {
+      translation 31.1753 0 4.4079
+      rotation 0 1 0 0.785398
+      name "traffic cone(16)"
+    }
+    TrafficCone {
+      translation 28.1631 0 1.39567
+      rotation 0 1 0 0.785398
+      name "traffic cone(18)"
+    }
+    TrafficCone {
+      translation 24.076 0 -2.69138
+      rotation 0 1 0 0.785398
+      name "traffic cone(19)"
+    }
+    TrafficCone {
+      translation 22.0395 0 -6.29761
+      rotation 0 1 0 0.785398
+      name "traffic cone(20)"
+    }
+    TrafficCone {
+      translation 23.4677 0 -9.918
+      rotation 0 1 0 0.785398
+      name "traffic cone(21)"
+    }
+    TrafficCone {
+      translation 27.0595 0 -13.5098
+      rotation 0 1 0 0.785398
+      name "traffic cone(22)"
+    }
+    TrafficCone {
+      translation 28.4944 0 -17.6317
+      rotation 0 1 0 0.785398
+      name "traffic cone(23)"
+    }
+    TrafficCone {
+      translation 26.5427 0 -21.394
+      rotation 0 1 0 0.785398
+      name "traffic cone(24)"
+    }
+    TrafficCone {
+      translation 22.8651 0 -25.3398
+      rotation 0 1 0 0.785398
+      name "traffic cone(25)"
+    }
+    TrafficCone {
+      translation 19.3366 0 -28.6565
+      rotation 0 1 0 0.785398
+      name "traffic cone(26)"
+    }
+    TrafficCone {
+      translation 15.6953 0.04 -30.827
+      rotation 0 1 0 0.785398
+      name "traffic cone(27)"
+    }
+    TrafficCone {
+      translation 12.1744 0.04 -28.4801
+      rotation 0 1 0 0.785398
+      name "traffic cone(28)"
+    }
+    TrafficCone {
+      translation 8.68849 0.04 -24.9942
+      rotation 0 1 0 0.785398
+      name "traffic cone(29)"
+    }
+    TrafficCone {
+      translation 5.01155 0.04 -21.3171
+      rotation 0 1 0 0.785398
+      name "traffic cone(30)"
+    }
+    TrafficCone {
+      translation 1.1437 0.04 -17.4493
+      rotation 0 1 0 0.785398
+      name "traffic cone(31)"
+    }
+    TrafficCone {
+      translation -2.75243 0.04 -13.553
+      rotation 0 1 0 0.785398
+      name "traffic cone(32)"
+    }
+    TrafficCone {
+      translation -6.67679 0.04 -9.6286
+      rotation 0 1 0 0.785398
+      name "traffic cone(33)"
+    }
+    TrafficCone {
+      translation -9.17983 0.04 -5.44254
+      rotation 0 1 0 0.785398
+      name "traffic cone(34)"
+    }
+    TrafficCone {
+      translation -8.74905 0.04 0.150644
+      rotation 0 1 0 0.785398
+      name "traffic cone(35)"
+    }
+  ]
+}
