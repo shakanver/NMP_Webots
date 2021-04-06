@@ -1,0 +1,8 @@
+prefix=/home/owr02/nmp_webots_ws/src/redback_webots_slam/src/NMP_Webots/devel
+
+Name: webots_ros
+Description: Description of webots_ros
+Version: 4.0.1
+Cflags: -I/home/owr02/nmp_webots_ws/src/redback_webots_slam/src/NMP_Webots/devel/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs sensor_msgs message_runtime tf

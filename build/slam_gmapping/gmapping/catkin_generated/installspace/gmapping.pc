@@ -1,0 +1,8 @@
+prefix=/home/owr02/nmp_webots_ws/src/redback_webots_slam/src/NMP_Webots/install
+
+Name: gmapping
+Description: Description of gmapping
+Version: 1.4.2
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

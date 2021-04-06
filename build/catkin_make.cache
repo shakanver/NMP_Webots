@@ -1,0 +1,2 @@
+slam_gmapping/gmapping:slam_gmapping/slam_gmapping:webots_ros
+-DCATKIN_DEVEL_PREFIX=/home/owr02/nmp_webots_ws/src/redback_webots_slam/src/NMP_Webots/devel -DCMAKE_INSTALL_PREFIX=/home/owr02/nmp_webots_ws/src/redback_webots_slam/src/NMP_Webots/install -G Unix Makefiles

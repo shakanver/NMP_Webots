@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/owr02/nmp_webots_ws/src/redback_webots_slam/src/NMP_Webots/devel/setup.sh

@@ -52,3 +52,33 @@ Other References:
 
 ## Submission
 Fork the given git repository, and then add all your code to this repository. Send us a link to this once the project is complete. 
+
+
+## How to Run Slam
+
+Please make sure you have installed the following
+- Webots
+- rviz
+- ros-melodic
+- webots_ros
+
+Step 1. Launching the world
+Make sure to configure the WEBOTS_HOME environment
+- type "export WEBOTS_HOME=/usr/local/webots" into the terminal
+To launch the webots environment run
+- "roslaunch webots_ros slam_map.launch"
+
+Step 2. Running the ros node
+Open up a new terminal
+- type "rosrun webots_ros slam_ros_test"
+This will start the controller
+
+Step 3. Gmapping 
+Open up a new terminal
+- type "rosrun gmapping slam_gmapping scan:=slam_ros_test/Sick_LMS_291/laser_scan/layer0"
+
+Step 4. Visualising the slam
+Open up a new Terminal
+- run rviz
+
+NOTE: If there is an error(usually rospackage cannot be found) try "source devel/setup.bash: first
