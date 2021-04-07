@@ -4,7 +4,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.7304254995810827 -0.5890292852807084 -0.34572111686072 1.0485414831410502
-  position -2.102352238348637 2.5557718150581437 1.1695780629230543
+  position -1.6351755277200595 2.131380266005969 1.0011768307929048
 }
 TexturedBackground {
 }
@@ -311,20 +311,26 @@ Transform {
   ]
 }
 DEF ROBOT_RED Robot {
-  translation -0.899917 -0.0303696 -0.354162
-  rotation -0.07255817084167566 0.9973465992049513 0.005922237620081607 -0.7621053071795858
+  translation -0.628316 0 -0.628316
+  rotation 0 1 0 -0.785395307179586
   children [
     Display {
-      width 256
-      height 256
+      name "display2"
+      width 1024
+      height 1024
+    }
+    Display {
+      width 1024
+      height 1024
     }
     Gyro {
     }
     Accelerometer {
     }
     Lidar {
-      translation 0 0.09 0
-      horizontalResolution 256
+      translation 0 0.06 -0.05
+      rotation 1 0 0 -0.02
+      horizontalResolution 1024
       fieldOfView 3.14159
       numberOfLayers 1
     }
@@ -346,7 +352,7 @@ DEF ROBOT_RED Robot {
     }
     DEF LEFT_WHEEL HingeJoint {
       jointParameters HingeJointParameters {
-        position 1618.0883870123146
+        position 886.7803492701981
         axis -1 0 0
         anchor 0 0.025 0
       }
@@ -356,8 +362,8 @@ DEF ROBOT_RED Robot {
         }
       ]
       endPoint DEF LEFT_WHEEL Solid {
-        translation -0.029999999999998802 0.025 0
-        rotation -1 0 0 4.608278374340426
+        translation -0.029999999999998805 0.025 0
+        rotation -1 0 0 2.1497362650560303
         children [
           DEF WHEEL Transform {
             rotation 0 0 1 1.57
@@ -401,7 +407,7 @@ DEF ROBOT_RED Robot {
     }
     DEF RIGHT_WHEEL HingeJoint {
       jointParameters HingeJointParameters {
-        position 989.5368365493819
+        position 137.37147341879128
         axis -1 0 0
         anchor 0 0.025 0
       }
@@ -411,8 +417,8 @@ DEF ROBOT_RED Robot {
         }
       ]
       endPoint DEF RIGHT_WHEEL Solid {
-        translation 0.029999999999999506 0.025 0
-        rotation -1 0 0 4.772578629366366
+        translation 0.029999999999999763 0.025 0
+        rotation 1 0 0 5.445953339159623
         children [
           DEF WHEEL Transform {
             rotation 0 0 1 1.57

@@ -8,5 +8,6 @@ orthographicViewHeight: 1
 textFiles: 0 "controllers/NMP_Controller/NMP_Controller.cpp"
 globalOptionalRendering: LidarRaysPaths
 consoles: Console:All:All
-renderingDevicePerspectives: ROBOT_RED:camera;0;0.292188;0;0
-renderingDevicePerspectives: ROBOT_RED:display;1;1;0;0
+renderingDevicePerspectives: ROBOT_RED:camera;0;0.815625;0;0
+renderingDevicePerspectives: ROBOT_RED:display;0;0.837891;0;0;488;85;858;858;0
+renderingDevicePerspectives: ROBOT_RED:display2;0;0.837891;0;0;2451;91;858;858;0
