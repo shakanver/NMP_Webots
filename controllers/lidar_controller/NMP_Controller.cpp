@@ -286,6 +286,3 @@ std::vector<Point> findCircles(std::vector<Point> radar_points, const float r, u
         }
         return newradar_points;
 }
-
-
-    
