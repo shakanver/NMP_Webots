@@ -232,11 +232,13 @@ int main(int argc, char **argv) {
         float near_dif = 0;
         if (minDist < 0.3) {
           near_flag = true;
-          near_dif = 2.0*minDir/size-1; // positive if object on rhs
-          dif = (dif - near_dif)/2;
         }
         if (minDist > 0.45) {
           near_flag = false;
+        }
+        if (near_flag) {
+          near_dif = 2.0*minDir/size-1; // positive if object on rhs
+          dif = (dif - near_dif)/2;
         }
         float left_speed = BASE_SPEED + DIF_SPEED* (dif) * gain;
         float right_speed = BASE_SPEED - DIF_SPEED* (dif) * gain;
